@@ -5,19 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Entry System</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
         }
-        
         .container {
             max-width: 600px;
             margin: 0 auto;
@@ -26,25 +20,19 @@
             padding: 30px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
-        
         h1 {
             text-align: center;
             color: #667eea;
             margin-bottom: 10px;
             font-size: 28px;
         }
-        
         .subtitle {
             text-align: center;
             color: #666;
             margin-bottom: 30px;
             font-size: 14px;
         }
-        
-        .input-group {
-            margin-bottom: 20px;
-        }
-        
+        .input-group { margin-bottom: 20px; }
         label {
             display: block;
             margin-bottom: 8px;
@@ -52,7 +40,6 @@
             font-weight: 600;
             font-size: 14px;
         }
-        
         input[type="text"] {
             width: 100%;
             padding: 15px;
@@ -64,13 +51,11 @@
             text-align: center;
             transition: all 0.3s;
         }
-        
         input[type="text"]:focus {
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
-        
         .verify-btn {
             width: 100%;
             padding: 18px;
@@ -83,113 +68,59 @@
             cursor: pointer;
             transition: transform 0.2s;
         }
-        
-        .verify-btn:hover {
-            transform: translateY(-2px);
-        }
-        
-        .verify-btn:active {
-            transform: translateY(0);
-        }
-        
+        .verify-btn:hover { transform: translateY(-2px); }
+        .verify-btn:active { transform: translateY(0); }
         .result {
             margin-top: 30px;
             padding: 25px;
             border-radius: 15px;
             text-align: center;
             display: none;
-            animation: slideIn 0.5s;
         }
-        
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
         .result.success {
             background: #d4edda;
             border: 3px solid #28a745;
         }
-        
         .result.error {
             background: #f8d7da;
             border: 3px solid #dc3545;
         }
-        
-        .result-icon {
-            font-size: 60px;
-            margin-bottom: 15px;
-        }
-        
+        .result-icon { font-size: 60px; margin-bottom: 15px; }
         .result-message {
             font-size: 32px;
             font-weight: bold;
             margin-bottom: 10px;
         }
-        
-        .result.success .result-message {
-            color: #28a745;
-        }
-        
-        .result.error .result-message {
-            color: #dc3545;
-        }
-        
-        .result-detail {
-            font-size: 18px;
-            color: #333;
-        }
-        
+        .result.success .result-message { color: #28a745; }
+        .result.error .result-message { color: #dc3545; }
+        .result-detail { font-size: 18px; color: #333; }
         .stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
             margin-top: 30px;
         }
-        
         .stat-box {
             background: #f8f9fa;
             padding: 15px;
             border-radius: 10px;
             text-align: center;
         }
-        
         .stat-number {
             font-size: 24px;
             font-weight: bold;
             color: #667eea;
         }
-        
         .stat-label {
             font-size: 12px;
             color: #666;
             margin-top: 5px;
         }
-        
         .admin-section {
             margin-top: 30px;
             padding-top: 20px;
             border-top: 2px solid #e0e0e0;
         }
-        
-        .admin-link {
-            text-align: center;
-            margin-bottom: 15px;
-        }
-        
-        .admin-link a {
-            color: #667eea;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-        }
-        
         .toggle-btn {
             background: none;
             border: none;
@@ -197,9 +128,9 @@
             cursor: pointer;
             font-size: 14px;
             text-decoration: underline;
-            margin-bottom: 15px;
+            display: block;
+            margin: 0 auto 15px;
         }
-        
         .guest-list {
             background: #f8f9fa;
             border-radius: 10px;
@@ -207,49 +138,45 @@
             max-height: 400px;
             overflow-y: auto;
         }
-        
         .guest-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 10px;
             border-bottom: 1px solid #dee2e6;
+            font-size: 14px;
         }
-        
-        .guest-item:last-child {
-            border-bottom: none;
-        }
-        
-        .guest-info {
-            flex: 1;
-        }
-        
-        .guest-name {
-            font-weight: 600;
-            color: #333;
-        }
-        
+        .guest-item:last-child { border-bottom: none; }
+        .guest-info { flex: 1; }
+        .guest-name { font-weight: 600; color: #333; }
         .guest-code {
             font-size: 11px;
             color: #666;
             font-family: monospace;
         }
-        
         .guest-status {
             padding: 5px 10px;
             border-radius: 20px;
             font-size: 11px;
             font-weight: 600;
         }
-        
         .status-entered {
             background: #d4edda;
             color: #155724;
         }
-        
         .status-pending {
             background: #e0e0e0;
             color: #666;
+        }
+        .admin-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .admin-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -260,10 +187,10 @@
         
         <div class="input-group">
             <label for="qrInput">Enter Guest Code:</label>
-            <input type="text" id="qrInput" placeholder="Enter code..." autofocus>
+            <input type="text" id="qrInput" placeholder="V001" autofocus>
         </div>
         
-        <button class="verify-btn" onclick="verifyEntry()">VERIFY ENTRY</button>
+        <button class="verify-btn" id="verifyBtn">VERIFY ENTRY</button>
         
         <div id="result" class="result"></div>
         
@@ -283,126 +210,55 @@
         </div>
         
         <div class="admin-section">
-            <div style="text-align: center;">
-                <button class="toggle-btn" onclick="toggleGuestList()">Show Guest List</button>
-            </div>
+            <button class="toggle-btn" id="toggleBtn">Show Guest List</button>
             <div id="guestListContainer" style="display: none;">
                 <div class="guest-list" id="guestList"></div>
             </div>
             <div class="admin-link">
-                <a href="#" onclick="resetAll(); return false;">🔄 Reset All Entries (Admin)</a>
+                <a href="#" id="resetBtn">🔄 Reset All Entries (Admin)</a>
             </div>
         </div>
     </div>
 
     <script>
-        // YOUR 80 GUESTS - AUTOMATICALLY LOADED FROM YOUR CSV FILE
-        const guestDatabase = {
-            "V001": {"name": "Mavis Tembo", "phone": "0977123456", "email": ""},
-            "V002": {"name": "John Banda", "phone": "0966234567", "email": ""},
-            "V003": {"name": "Sarah Mwale", "phone": "0955345678", "email": ""},
-            "V004": {"name": "Peter Phiri", "phone": "0977456789", "email": ""},
-            "V005": {"name": "Grace Mulenga", "phone": "0966567890", "email": ""},
-            "V006": {"name": "David Lungu", "phone": "0955678901", "email": ""},
-            "V007": {"name": "Maria Sakala", "phone": "0977789012", "email": ""},
-            "V008": {"name": "James Zulu", "phone": "0966890123", "email": ""},
-            "V009": {"name": "Elizabeth Banda", "phone": "0955901234", "email": ""},
-            "V010": {"name": "Thomas Chirwa", "phone": "0977012345", "email": ""},
-            "V011": {"name": "Ruth Mwanza", "phone": "0966123456", "email": ""},
-            "V012": {"name": "Joseph Tembo", "phone": "0955234567", "email": ""},
-            "V013": {"name": "Mary Phiri", "phone": "0977345678", "email": ""},
-            "V014": {"name": "Daniel Mulenga", "phone": "0966456789", "email": ""},
-            "V015": {"name": "Joyce Banda", "phone": "0955567890", "email": ""},
-            "V016": {"name": "Patrick Zulu", "phone": "0977678901", "email": ""},
-            "V017": {"name": "Alice Mwale", "phone": "0966789012", "email": ""},
-            "V018": {"name": "Michael Lungu", "phone": "0955890123", "email": ""},
-            "V019": {"name": "Jane Sakala", "phone": "0977901234", "email": ""},
-            "V020": {"name": "Francis Chirwa", "phone": "0966012345", "email": ""},
-            "V021": {"name": "Catherine Mwanza", "phone": "0955123456", "email": ""},
-            "V022": {"name": "George Tembo", "phone": "0977234567", "email": ""},
-            "V023": {"name": "Margaret Phiri", "phone": "0966345678", "email": ""},
-            "V024": {"name": "Stephen Mulenga", "phone": "0955456789", "email": ""},
-            "V025": {"name": "Beatrice Banda", "phone": "0977567890", "email": ""},
-            "V026": {"name": "Andrew Zulu", "phone": "0966678901", "email": ""},
-            "V027": {"name": "Dorothy Mwale", "phone": "0955789012", "email": ""},
-            "V028": {"name": "Richard Lungu", "phone": "0977890123", "email": ""},
-            "V029": {"name": "Helen Sakala", "phone": "0966901234", "email": ""},
-            "V030": {"name": "Charles Chirwa", "phone": "0955012345", "email": ""},
-            "V031": {"name": "Agnes Mwanza", "phone": "0977123457", "email": ""},
-            "V032": {"name": "Robert Tembo", "phone": "0966234568", "email": ""},
-            "V033": {"name": "Susan Phiri", "phone": "0955345679", "email": ""},
-            "V034": {"name": "William Mulenga", "phone": "0977456780", "email": ""},
-            "V035": {"name": "Nancy Banda", "phone": "0966567891", "email": ""},
-            "V036": {"name": "Emmanuel Zulu", "phone": "0955678902", "email": ""},
-            "V037": {"name": "Lydia Mwale", "phone": "0977789013", "email": ""},
-            "V038": {"name": "Kenneth Lungu", "phone": "0966890124", "email": ""},
-            "V039": {"name": "Esther Sakala", "phone": "0955901235", "email": ""},
-            "V040": {"name": "Paul Chirwa", "phone": "0977012346", "email": ""},
-            "V041": {"name": "Martha Mwanza", "phone": "0966123457", "email": ""},
-            "V042": {"name": "Henry Tembo", "phone": "0955234568", "email": ""},
-            "V043": {"name": "Deborah Phiri", "phone": "0977345679", "email": ""},
-            "V044": {"name": "Christopher Mulenga", "phone": "0966456780", "email": ""},
-            "V045": {"name": "Rebecca Banda", "phone": "0955567891", "email": ""},
-            "V046": {"name": "Samuel Zulu", "phone": "0977678902", "email": ""},
-            "V047": {"name": "Rachel Mwale", "phone": "0966789013", "email": ""},
-            "V048": {"name": "Jonathan Lungu", "phone": "0955890124", "email": ""},
-            "V049": {"name": "Miriam Sakala", "phone": "0977901235", "email": ""},
-            "V050": {"name": "Benjamin Chirwa", "phone": "0966012346", "email": ""},
-            "V051": {"name": "Priscilla Mwanza", "phone": "0955123457", "email": ""},
-            "V052": {"name": "Isaac Tembo", "phone": "0977234568", "email": ""},
-            "V053": {"name": "Edith Phiri", "phone": "0966345679", "email": ""},
-            "V054": {"name": "Timothy Mulenga", "phone": "0955456780", "email": ""},
-            "V055": {"name": "Hannah Banda", "phone": "0977567891", "email": ""},
-            "V056": {"name": "Moses Zulu", "phone": "0966678902", "email": ""},
-            "V057": {"name": "Naomi Mwale", "phone": "0955789013", "email": ""},
-            "V058": {"name": "Solomon Lungu", "phone": "0977890124", "email": ""},
-            "V059": {"name": "Abigail Sakala", "phone": "0966901235", "email": ""},
-            "V060": {"name": "Joshua Chirwa", "phone": "0955012346", "email": ""},
-            "V061": {"name": "Sarah Mwanza", "phone": "0977123458", "email": ""},
-            "V062": {"name": "Aaron Tembo", "phone": "0966234569", "email": ""},
-            "V063": {"name": "Mercy Phiri", "phone": "0955345670", "email": ""},
-            "V064": {"name": "Elijah Mulenga", "phone": "0977456781", "email": ""},
-            "V065": {"name": "Charity Banda", "phone": "0966567892", "email": ""},
-            "V066": {"name": "Nathan Zulu", "phone": "0955678903", "email": ""},
-            "V067": {"name": "Faith Mwale", "phone": "0977789014", "email": ""},
-            "V068": {"name": "Gabriel Lungu", "phone": "0966890125", "email": ""},
-            "V069": {"name": "Hope Sakala", "phone": "0955901236", "email": ""},
-            "V070": {"name": "Caleb Chirwa", "phone": "0977012347", "email": ""},
-            "V071": {"name": "Patience Mwanza", "phone": "0966123458", "email": ""},
-            "V072": {"name": "Abel Tembo", "phone": "0955234569", "email": ""},
-            "V073": {"name": "Joy Phiri", "phone": "0977345670", "email": ""},
-            "V074": {"name": "Simon Mulenga", "phone": "0966456781", "email": ""},
-            "V075": {"name": "Peace Banda", "phone": "0955567892", "email": ""},
-            "V076": {"name": "Ezekiel Zulu", "phone": "0977678903", "email": ""},
-            "V077": {"name": "Love Mwale", "phone": "0966789014", "email": ""},
-            "V078": {"name": "Enock Lungu", "phone": "0955890125", "email": ""},
-            "V079": {"name": "Grace Sakala", "phone": "0977901236", "email": ""},
-            "V080": {"name": "Noah Chirwa", "phone": "0966012347", "email": ""}
-        };
+        // Guest database
+        const guestDatabase = {"V001":{"name":"Mavis Tembo","phone":"0977123456"},"V002":{"name":"John Banda","phone":"0966234567"},"V003":{"name":"Sarah Mwale","phone":"0955345678"},"V004":{"name":"Peter Phiri","phone":"0977456789"},"V005":{"name":"Grace Mulenga","phone":"0966567890"},"V006":{"name":"David Lungu","phone":"0955678901"},"V007":{"name":"Maria Sakala","phone":"0977789012"},"V008":{"name":"James Zulu","phone":"0966890123"},"V009":{"name":"Elizabeth Banda","phone":"0955901234"},"V010":{"name":"Thomas Chirwa","phone":"0977012345"},"V011":{"name":"Ruth Mwanza","phone":"0966123456"},"V012":{"name":"Joseph Tembo","phone":"0955234567"},"V013":{"name":"Mary Phiri","phone":"0977345678"},"V014":{"name":"Daniel Mulenga","phone":"0966456789"},"V015":{"name":"Joyce Banda","phone":"0955567890"},"V016":{"name":"Patrick Zulu","phone":"0977678901"},"V017":{"name":"Alice Mwale","phone":"0966789012"},"V018":{"name":"Michael Lungu","phone":"0955890123"},"V019":{"name":"Jane Sakala","phone":"0977901234"},"V020":{"name":"Francis Chirwa","phone":"0966012345"},"V021":{"name":"Catherine Mwanza","phone":"0955123456"},"V022":{"name":"George Tembo","phone":"0977234567"},"V023":{"name":"Margaret Phiri","phone":"0966345678"},"V024":{"name":"Stephen Mulenga","phone":"0955456789"},"V025":{"name":"Beatrice Banda","phone":"0977567890"},"V026":{"name":"Andrew Zulu","phone":"0966678901"},"V027":{"name":"Dorothy Mwale","phone":"0955789012"},"V028":{"name":"Richard Lungu","phone":"0977890123"},"V029":{"name":"Helen Sakala","phone":"0966901234"},"V030":{"name":"Charles Chirwa","phone":"0955012345"},"V031":{"name":"Agnes Mwanza","phone":"0977123457"},"V032":{"name":"Robert Tembo","phone":"0966234568"},"V033":{"name":"Susan Phiri","phone":"0955345679"},"V034":{"name":"William Mulenga","phone":"0977456780"},"V035":{"name":"Nancy Banda","phone":"0966567891"},"V036":{"name":"Emmanuel Zulu","phone":"0955678902"},"V037":{"name":"Lydia Mwale","phone":"0977789013"},"V038":{"name":"Kenneth Lungu","phone":"0966890124"},"V039":{"name":"Esther Sakala","phone":"0955901235"},"V040":{"name":"Paul Chirwa","phone":"0977012346"},"V041":{"name":"Martha Mwanza","phone":"0966123457"},"V042":{"name":"Henry Tembo","phone":"0955234568"},"V043":{"name":"Deborah Phiri","phone":"0977345679"},"V044":{"name":"Christopher Mulenga","phone":"0966456780"},"V045":{"name":"Rebecca Banda","phone":"0955567891"},"V046":{"name":"Samuel Zulu","phone":"0977678902"},"V047":{"name":"Rachel Mwale","phone":"0966789013"},"V048":{"name":"Jonathan Lungu","phone":"0955890124"},"V049":{"name":"Miriam Sakala","phone":"0977901235"},"V050":{"name":"Benjamin Chirwa","phone":"0966012346"},"V051":{"name":"Priscilla Mwanza","phone":"0955123457"},"V052":{"name":"Isaac Tembo","phone":"0977234568"},"V053":{"name":"Edith Phiri","phone":"0966345679"},"V054":{"name":"Timothy Mulenga","phone":"0955456780"},"V055":{"name":"Hannah Banda","phone":"0977567891"},"V056":{"name":"Moses Zulu","phone":"0966678902"},"V057":{"name":"Naomi Mwale","phone":"0955789013"},"V058":{"name":"Solomon Lungu","phone":"0977890124"},"V059":{"name":"Abigail Sakala","phone":"0966901235"},"V060":{"name":"Joshua Chirwa","phone":"0955012346"},"V061":{"name":"Sarah Mwanza","phone":"0977123458"},"V062":{"name":"Aaron Tembo","phone":"0966234569"},"V063":{"name":"Mercy Phiri","phone":"0955345670"},"V064":{"name":"Elijah Mulenga","phone":"0977456781"},"V065":{"name":"Charity Banda","phone":"0966567892"},"V066":{"name":"Nathan Zulu","phone":"0955678903"},"V067":{"name":"Faith Mwale","phone":"0977789014"},"V068":{"name":"Gabriel Lungu","phone":"0966890125"},"V069":{"name":"Hope Sakala","phone":"0955901236"},"V070":{"name":"Caleb Chirwa","phone":"0977012347"},"V071":{"name":"Patience Mwanza","phone":"0966123458"},"V072":{"name":"Abel Tembo","phone":"0955234569"},"V073":{"name":"Joy Phiri","phone":"0977345670"},"V074":{"name":"Simon Mulenga","phone":"0966456781"},"V075":{"name":"Peace Banda","phone":"0955567892"},"V076":{"name":"Ezekiel Zulu","phone":"0977678903"},"V077":{"name":"Love Mwale","phone":"0966789014"},"V078":{"name":"Enock Lungu","phone":"0955890125"},"V079":{"name":"Grace Sakala","phone":"0977901236"},"V080":{"name":"Noah Chirwa","phone":"0966012347"}};
 
         let guestListVisible = false;
 
+        // Load entries from localStorage
         function loadEntries() {
-            const saved = localStorage.getItem('eventEntries');
-            return saved ? JSON.parse(saved) : {};
+            try {
+                const saved = localStorage.getItem('eventEntries');
+                return saved ? JSON.parse(saved) : {};
+            } catch (e) {
+                console.error('Error loading entries:', e);
+                return {};
+            }
         }
 
+        // Save entries to localStorage
         function saveEntries(entries) {
-            localStorage.setItem('eventEntries', JSON.stringify(entries));
+            try {
+                localStorage.setItem('eventEntries', JSON.stringify(entries));
+            } catch (e) {
+                console.error('Error saving entries:', e);
+            }
         }
 
+        // Update statistics
         function updateStats() {
             const entries = loadEntries();
             const enteredCount = Object.keys(entries).length;
-            const totalGuests = Object.keys(guestDatabase).length;
             document.getElementById('entered').textContent = enteredCount;
-            document.getElementById('pending').textContent = totalGuests - enteredCount;
-            document.getElementById('totalGuests').textContent = totalGuests;
+            document.getElementById('pending').textContent = 80 - enteredCount;
         }
 
+        // Verify entry
         function verifyEntry() {
             const input = document.getElementById('qrInput');
             const code = input.value.trim().toUpperCase();
+            const resultDiv = document.getElementById('result');
             
             if (!code) {
                 showResult(false, 'PLEASE ENTER CODE', 'Type or scan the guest code');
@@ -410,7 +266,7 @@
             }
             
             if (!guestDatabase[code]) {
-                showResult(false, 'INVALID CODE ❌', 'This code is not recognized. Please check the code.');
+                showResult(false, 'INVALID CODE ❌', 'Code not recognized. Use V001-V080');
                 input.value = '';
                 return;
             }
@@ -420,154 +276,83 @@
             
             if (entries[code]) {
                 const entryTime = new Date(entries[code].time).toLocaleString();
-                showResult(
-                    false, 
-                    'ALREADY ENTERED ❌', 
-                    `${guest.name} already entered at ${entryTime}`
-                );
+                showResult(false, 'ALREADY ENTERED ❌', guest.name + ' entered at ' + entryTime);
                 input.value = '';
                 return;
             }
             
-            entries[code] = {
-                name: guest.name,
-                time: new Date().toISOString()
-            };
+            entries[code] = { name: guest.name, time: new Date().toISOString() };
             saveEntries(entries);
             
-            showResult(
-                true, 
-                'ENTER ✓', 
-                `Welcome ${guest.name}! Enjoy the event!`
-            );
-            
+            showResult(true, 'ENTER ✓', 'Welcome ' + guest.name + '! Enjoy the event!');
             input.value = '';
             updateStats();
             updateGuestList();
         }
 
-        function showResult(success,
+        // Show result
+        function showResult(success, message, detail) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.className = 'result ' + (success ? 'success' : 'error');
+            resultDiv.innerHTML = '<div class="result-icon">' + (success ? '✅' : '❌') + '</div><div class="result-message">' + message + '</div><div class="result-detail">' + detail + '</div>';
+            resultDiv.style.display = 'block';
+            setTimeout(function() { resultDiv.style.display = 'none'; }, 5000);
+        }
 
----
+        // Reset all entries
+        function resetAll(e) {
+            e.preventDefault();
+            if (confirm('⚠️ Reset ALL entries? This cannot be undone!')) {
+                localStorage.removeItem('eventEntries');
+                updateStats();
+                updateGuestList();
+                alert('✅ All entries reset successfully.');
+            }
+        }
 
-## 🎯 STEP 6: Customize the Code
+        // Toggle guest list
+        function toggleGuestList() {
+            guestListVisible = !guestListVisible;
+            const container = document.getElementById('guestListContainer');
+            const btn = document.getElementById('toggleBtn');
+            
+            if (guestListVisible) {
+                container.style.display = 'block';
+                btn.textContent = 'Hide Guest List';
+                updateGuestList();
+            } else {
+                container.style.display = 'none';
+                btn.textContent = 'Show Guest List';
+            }
+        }
 
-### Edit the guest database (lines 109-120):
+        // Update guest list
+        function updateGuestList() {
+            const entries = loadEntries();
+            const listContainer = document.getElementById('guestList');
+            let html = '';
+            
+            for (const code in guestDatabase) {
+                const guest = guestDatabase[code];
+                const hasEntered = entries[code];
+                const statusClass = hasEntered ? 'status-entered' : 'status-pending';
+                const statusText = hasEntered ? '✓ Entered' : 'Pending';
+                
+                html += '<div class="guest-item"><div class="guest-info"><div class="guest-name">' + guest.name + '</div><div class="guest-code">' + code + ' • ' + guest.phone + '</div></div><div class="guest-status ' + statusClass + '">' + statusText + '</div></div>';
+            }
+            listContainer.innerHTML = html;
+        }
 
-Replace with YOUR 10 guests:
-```javascript
-const guestDatabase = {
-    'G001': { name: 'Your Guest 1 Name', phone: 'email1@example.com' },
-    'G002': { name: 'Your Guest 2 Name', phone: 'email2@example.com' },
-    // ... continue for all 10 guests
-};
-```
+        // Event listeners
+        document.getElementById('verifyBtn').addEventListener('click', verifyEntry);
+        document.getElementById('qrInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') verifyEntry();
+        });
+        document.getElementById('toggleBtn').addEventListener('click', toggleGuestList);
+        document.getElementById('resetBtn').addEventListener('click', resetAll);
 
----
-
-## 📱 STEP 7: Testing Everything
-
-### Before the Event:
-
-1. **Test QR Codes:**
-   - Open your deployed website on your phone
-   - Type "G001" in the scanner
-   - Should show "ENTER ✓" and guest name
-   - Type "G001" again
-   - Should show "ALREADY ENTERED"
-
-2. **Test All 10 Codes:**
-   - Test G001 through G010
-   - Verify names appear correctly
-
-3. **Reset for Event:**
-   - Click "Reset All Entries (Admin)"
-   - Confirm all stats go back to 0
-
-### At the Event:
-
-1. Open the website on phone/tablet
-2. Keep screen on (disable auto-lock)
-3. Scan QR codes or manually type codes
-4. Watch for GREEN (✅ ENTER) or RED (❌ ALREADY ENTERED)
-
----
-
-## ✅ STEP 8: Send Invitations
-
-### Distribution:
-
-1. **Digital Send:**
-   - Email PNG/PDF to each guest
-   - WhatsApp the personalized invitation
-   - Emphasize: QR code is UNIQUE and NON-TRANSFERABLE
-
-2. **Instructions for Guests:**
-   - "Present this QR code at event entrance"
-   - "Each code works only once"
-   - "Do not share or screenshot to others"
-
----
-
-## 🔒 Security Features Built-In
-
-✅ Each code works ONLY ONCE
-✅ Cannot be transferred (unique per guest)
-✅ Offline-capable (uses browser storage)
-✅ Shows guest name for verification
-✅ Tracks entry time
-✅ Real-time statistics
-
----
-
-## 💡 Pro Tips
-
-1. **Print Backup:** Print a list of all 10 codes in case of phone issues
-2. **Battery:** Charge phone/tablet fully before event
-3. **Brightness:** Increase screen brightness for easier scanning
-4. **Manual Entry:** You can type codes if QR scanning fails
-5. **Quick Reset:** Use admin reset if you need to test before event
-
----
-
-## 🆘 Troubleshooting
-
-**QR Code Won't Scan?**
-- Type the code manually (G001, G002, etc.)
-- Check QR code is clear and not blurry
-
-**Website Not Working?**
-- Check internet connection (initial load only)
-- Clear browser cache
-- Try different browser
-
-**Already Entered Error?**
-- Guest may have entered already
-- Check entry time in error message
-- Use admin reset if it's a mistake
-
----
-
-## 📊 Cost Breakdown
-
-| Item | Cost |
-|------|------|
-| Google Sheets | FREE |
-| QR Code Generation | FREE |
-| Canva (Basic) | FREE |
-| GitHub Pages Hosting | FREE |
-| Entry System | FREE |
-| **TOTAL** | **$0.00** |
-
----
-
-## 🎉 You're Done!
-
-You now have a **professional event entry system** with:
-- ✅ 10 unique QR code invitations
-- ✅ Real-time entry verification
-- ✅ Anti-fraud protection
-- ✅ Mobile-friendly scanner
-- ✅ 100% FREE solution
-
-**Need help? Let me know what step you're on!**
+        // Initialize
+        updateStats();
+    </script>
+</body>
+</html>
